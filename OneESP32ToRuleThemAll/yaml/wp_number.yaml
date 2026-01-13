@@ -1,0 +1,42 @@
+defaults:
+  target: "Kessel"
+  step: "1"
+  min: "0"
+  max: "100"
+  icon: "mdi:valve"
+  unit: ""
+
+number:
+  - platform: template
+    name: ${property}
+    id: ${property}
+    icon: ${icon}
+    unit_of_measurement: ${unit}
+    min_value: ${min}
+    max_value: ${max}
+    step: ${step}
+    initial_value: NAN
+    optimistic: true
+    set_action:
+      - lambda: |-
+          ESP_LOGI("Number", "Setting new value %f for %s", x, std::string(Property::k${property}.name).c_str());
+          if(x != NAN) {
+            const auto type = Property::k${property}.type;
+            const auto value = GetRawByType(SimpleVariant(x),type);
+            if(value.has_value()) {
+                sendData(${target}, Property::k${property}, *value);
+            } else {
+              ESP_LOGE("Number", "Setting new value failed!");
+            }
+          }
+
+esphome:
+  on_boot:
+    priority: 100.0 # AFTER_CONNECTION
+    then:
+      - lambda: |-
+          CallbackHandler::instance().addCallbacks({std::make_pair(${target},Property::k${property}),
+                                                    std::make_pair(Manager,Property::k${property})},[](const SimpleVariant& value){
+              id(${property}).publish_state(value);
+          });
+          queueRequest(${target}, Property::k${property});

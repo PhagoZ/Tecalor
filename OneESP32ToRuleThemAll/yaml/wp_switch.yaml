@@ -1,0 +1,29 @@
+defaults:
+  target: "Kessel"
+  icon: "mdi:toggle-switch-variant"
+
+switch:
+  - platform: template
+    name: ${property}
+    id: ${property}
+    icon: ${icon}
+    restore_mode: RESTORE_DEFAULT_OFF
+    turn_on_action:
+      - lambda: |-
+          sendData(${target}, Property::k${property}, static_cast<std::uint16_t>(true));
+    turn_off_action:
+      - lambda: |-
+          sendData(${target}, Property::k${property}, static_cast<std::uint16_t>(false));
+
+esphome:
+  on_boot:
+    priority: 100.0 # AFTER_CONNECTION
+    then:
+      - lambda: |-
+          static_assert(Property::k${property}.type == Type::et_bool, "Only properties of type bool are supported by wp_switch.");
+
+          CallbackHandler::instance().addCallbacks({std::make_pair(${target},Property::k${property}),
+                                                    std::make_pair(Manager,Property::k${property})}, [](const SimpleVariant& value){
+              id(${property}).publish_state(value);
+          });
+          queueRequest(${target}, Property::k${property});
