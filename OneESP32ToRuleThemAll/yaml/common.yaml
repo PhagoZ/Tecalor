@@ -115,9 +115,9 @@ interval:
 #                                       #
 #########################################
 packages:
-  VERDICHTER_STARTS:                 !include { file: github://PhagoZ/Tecalor/OneESP32ToRuleThemAll/yaml/wp_generic_combined.yaml, vars: { sensor_name: "VERDICHTER_STARTS"           , scaled_property: "VERDICHTER_STARTS_K"       , property: "VERDICHTER_STARTS"         , unit: ""   , accuracy_decimals: "0", scaler: "1000", icon: "mdi:counter" }}
-  WAERMEERTRAG_WW_SUMME_MWH:         !include { file: github://PhagoZ/Tecalor/OneESP32ToRuleThemAll/yaml/wp_generic_combined.yaml, vars: { sensor_name: "WAERMEERTRAG_WW_SUMME_MWH"   , scaled_property: "WAERMEERTRAG_WW_SUM_KWH"   , property: "WAERMEERTRAG_WW_SUM_MWH"   , unit: "MWh", accuracy_decimals: "3", icon: "mdi:fire" }}
-  WAERMEERTRAG_HEIZ_SUMME_MWH:       !include { file: github://PhagoZ/Tecalor/OneESP32ToRuleThemAll/yaml/wp_generic_combined.yaml, vars: { sensor_name: "WAERMEERTRAG_HEIZ_SUMME_MWH" , scaled_property: "WAERMEERTRAG_HEIZ_SUM_KWH" , property: "WAERMEERTRAG_HEIZ_SUM_MWH" , unit: "MWh", accuracy_decimals: "3", icon: "mdi:fire" }}
+  VERDICHTER_STARTS:                 !include { file: wp_generic_combined.yaml, vars: { sensor_name: "VERDICHTER_STARTS"           , scaled_property: "VERDICHTER_STARTS_K"       , property: "VERDICHTER_STARTS"         , unit: ""   , accuracy_decimals: "0", scaler: "1000", icon: "mdi:counter" }}
+  WAERMEERTRAG_WW_SUMME_MWH:         !include { file: wp_generic_combined.yaml, vars: { sensor_name: "WAERMEERTRAG_WW_SUMME_MWH"   , scaled_property: "WAERMEERTRAG_WW_SUM_KWH"   , property: "WAERMEERTRAG_WW_SUM_MWH"   , unit: "MWh", accuracy_decimals: "3", icon: "mdi:fire" }}
+  WAERMEERTRAG_HEIZ_SUMME_MWH:       !include { file: wp_generic_combined.yaml, vars: { sensor_name: "WAERMEERTRAG_HEIZ_SUMME_MWH" , scaled_property: "WAERMEERTRAG_HEIZ_SUM_KWH" , property: "WAERMEERTRAG_HEIZ_SUM_MWH" , unit: "MWh", accuracy_decimals: "3", icon: "mdi:fire" }}
 
   SPEICHERSOLLTEMP:                  !include { file: github://PhagoZ/Tecalor/OneESP32ToRuleThemAll/yaml/wp_temperature.yaml, vars: { property: "SPEICHERSOLLTEMP"          }}
   SPEICHERISTTEMP:                   !include { file: github://PhagoZ/Tecalor/OneESP32ToRuleThemAll/yaml/wp_temperature.yaml, vars: { property: "SPEICHERISTTEMP"          , update_interval: $interval_medium }}
