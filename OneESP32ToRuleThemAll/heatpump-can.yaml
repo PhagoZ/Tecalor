@@ -1,5 +1,5 @@
 esphome:
-  name: esphome-web-9d8be0
+  name: Tecalor_HP
   friendly_name: HeatPump_CAN
   platformio_options:
     build_flags:
