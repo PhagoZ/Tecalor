@@ -4,7 +4,7 @@ defaults:
 
 esphome:
   includes:
-    - OneESP32ToRuleThemAll/src/sml_reader.h
+    - github://PhagoZ/Tecalor/OneESP32ToRuleThemAll/src/sml_reader.h
   libraries:
     - libsml=git+https://github.com/volkszaehler/libsml
 
@@ -24,7 +24,7 @@ uart:
 #                                       #
 #########################################
 external_components:
-  - source: OneESP32ToRuleThemAll/components
+  - source: github://PhagoZ/Tecalor/OneESP32ToRuleThemAll/components
 
 custom_component:
   - lambda: |-
